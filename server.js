@@ -23,7 +23,8 @@ app.get('/search', function(req, res, next) {
         let options = {
                 url : searchUrl,
                 headers : {
-                    'Authorization' : 'Bearer ' + accessToken
+                    'Authorization' : 'Bearer ' + accessToken,
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 qs : {
                     'location': location,
@@ -37,6 +38,7 @@ app.get('/search', function(req, res, next) {
     }
     if (accessToken == '') {
         var url = tokenUrl;
+        console.log(accessToken);
         request.post(url, {}, function(error, response, body) {
             accessToken = JSON.parse(body).access_token;
             searchRequest();
