@@ -18,8 +18,8 @@ app.options('*', cors());
 // client app calls server and server makes a request to the remote resource.
 app.get('/search', function(req, res, next) {
     var searchRequest = function() {
-        let cuisine = req.query.cuisine;
-        let location = req.query.location;
+        let cuisine = req.query.cuisine.toLowerCase();
+        let location = req.query.location.toLowerCase();
         let options = {
                 url : searchUrl,
                 headers : {
